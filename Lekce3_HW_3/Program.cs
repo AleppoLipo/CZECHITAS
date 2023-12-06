@@ -57,7 +57,7 @@ Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine("Zadej cestu souboru nebo prikaz odentrujes, data se ulozi do vychoziho souboru (cesta k souboru se vypise nize).");
 Console.ResetColor();
 
-string cestaD = @"C:\Temp\TP_HW\test_text.txt";
+string cestaD = @"..\TP_HW\test_text.txt";
 
 cestaS = Console.ReadLine();
 
@@ -68,9 +68,17 @@ if (string.IsNullOrEmpty(cestaS))
 
 if (!File.Exists(cestaS))
 {
-	Console.WriteLine("Soubor neexituje, zkus to znovu.");
-	Directory.CreateDirectory(Path.GetDirectoryName(cestaS));
-	File.Create(cestaS);
+	Console.WriteLine("Soubor neexituje.");
+	try
+	{
+		Directory.CreateDirectory(Path.GetDirectoryName(cestaS));
+		using (var stream = File.Create(cestaS));
+	}
+	catch (Exception ex)
+	{
+		Console.WriteLine("Cesta je neplatna.");
+		return;
+	}
 }
 
 

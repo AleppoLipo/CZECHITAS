@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace Lekce3_HW_4
 {
-	public class Pes
+	internal class Pes
 	{
-		public string Plemeno;
-		public string Pohlavi;
-		public string Vek;
+		public string Plemeno { get; set; }
+		public PohlaviKod Pohlavi { get; set; }
+		public int Vek { get; set; }
+	}
 
+	public enum PohlaviKod
+	{
+		Pes,
+		Fena,
 	}
 }
-
